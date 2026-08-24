@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2339,
+    "production_files": 34,
+    "production_packages": 14,
+    "test_files": 10,
+    "production_functions": 191,
+    "decision_points": 354
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": [
+      "Tool",
+      "ToolOrder",
+      "ImportBatch",
+      "BackupSnapshot",
+      "AuditEvent"
+    ],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": [
+        "管理员提交带分类、状态、链接和标签的导入行",
+        "解析器校验字段并形成 ImportBatch",
+        "目录服务持久化工具和导入批次并记录审计",
+        "治理策略生成合规复核结果供管理员查看"
+      ],
+      "test": "TestWorkflowImportQueryStatus"
+    },
+    {
+      "steps": [
+        "管理员按分类、状态或关键词查询工具",
+        "目录服务返回保持当前顺序的结果",
+        "管理员对工具执行状态转换",
+        "CLI 展示目录、仪表盘和审计结果"
+      ],
+      "test": "TestWorkflowImportQueryStatus"
+    },
+    {
+      "steps": [
+        "管理员选择工具和目标位置",
+        "目录服务应用顺序变更并重建排名",
+        "备份服务读取当前唯一顺序并计算校验和",
+        "管理员查看备份清单与差异"
+      ],
+      "test": "TestWorkflowSortAndBackup"
+    },
+    {
+      "steps": [
+        "关闭 bbolt 存储并释放文件句柄",
+        "重新打开同一路径并加载工具与顺序",
+        "校验备份和审计实体仍可读取",
+        "从最新备份恢复当前顺序并展示结果"
+      ],
+      "test": "TestPersistenceSurvivesReopen"
+    }
+  ]
+}
