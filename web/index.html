@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>独立开发者工具导航</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; background: #f4f6f8; color: #18212b; }
+    body { margin: 0; padding: 2rem; }
+    main { max-width: 62rem; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px solid #cbd3dc; }
+    h1 { font-size: 1.75rem; margin: 0 0 1rem; }
+    p { color: #536273; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+    .panel { background: white; border: 1px solid #d8dee5; padding: 1rem; }
+    .panel strong { display: block; font-size: 1.3rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <header><h1>独立开发者工具导航</h1><span>目录概览</span></header>
+    <p>通过 Go CLI 导入工具、查询目录、调整顺序并生成可验证备份。</p>
+    <section class="grid" aria-label="工具类别">
+      <div class="panel"><strong>部署</strong><span>发布与基础设施工具</span></div>
+      <div class="panel"><strong>监控</strong><span>指标、日志和告警工具</span></div>
+      <div class="panel"><strong>支付</strong><span>账单与收款工具</span></div>
+      <div class="panel"><strong>文档</strong><span>知识库和写作工具</span></div>
+      <div class="panel"><strong>合规</strong><span>审计与政策工具</span></div>
+    </section>
+  </main>
+</body>
+</html>
